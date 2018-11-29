@@ -22,3 +22,6 @@ Rotation function is by "BlackJack" from https://www.python-forum.de/viewtopic.p
      bitmask: 13 at 180 deg
      bitmask: 11 at 270 deg
 ```
+### meshCalculation.py
+Creates copies of meshes based on their bitmask-values. The mesh name has to be a bitmask value between 0 and 255. Meshes can have a prefix to define different layers.
+The script was tested in Blender 2.79b.
