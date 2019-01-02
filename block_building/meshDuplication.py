@@ -10,6 +10,8 @@ for obj in bpy.context.selected_objects:
     if obj.type == 'MESH':
         bpy.context.scene.objects.active = obj
         
+        sourcepos = obj.location[:]
+        
         prefix = ''
         name = str(obj.name)
         
@@ -22,12 +24,12 @@ for obj in bpy.context.selected_objects:
         p0 = int(binary[:4],2)
         p1 = int(binary[4:],2)
         
+        bpy.context.active_object.location = (0, 0, 0)
         for i in range(1, 4):
             p0 = rotateLeft(4, p0)
             p1 = rotateLeft(4, p1)
             
             result = prefix + str(int(str(format(p0, '04b')) + str(format(p1, '04b')),2))
-            
             if bpy.data.objects.get(result) is None:
                 new_obj = obj.copy()
                 new_obj.data = obj.data.copy()
@@ -35,5 +37,6 @@ for obj in bpy.context.selected_objects:
                 bpy.context.scene.objects.active = new_obj
                 bpy.context.scene.objects.active.name = result
                 bpy.context.active_object.rotation_euler = (0, 0, pi/2 * i)
-                bpy.context.active_object.location = (0, 0, 0)
-                bpy.ops.object.transform_apply(location = True, scale = True, rotation = True)  
+                bpy.ops.object.transform_apply(location = False, scale = True, rotation = True)
+                bpy.context.active_object.location =  sourcepos
+        obj.location = bpy.context.active_object.location =  sourcepos
