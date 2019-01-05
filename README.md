@@ -25,3 +25,6 @@ Rotation function is by "BlackJack" from https://www.python-forum.de/viewtopic.p
 ### meshDuplication.py
 Creates copies of meshes based on their bitmask-values. The mesh name has to be a bitmask value between 0 and 255. Meshes can have a prefix to define different layers.
 The script was tested in Blender 2.79b.
+### meshExport.py
+Exports all selected objects. Sets all transforms to zero on export and then moves them back to their previous position.
+The script was tested in Blender 2.79b.
