@@ -16,7 +16,7 @@ blocks = [1,3,7,15,17,51,255,273,4369,13107,65535]
 
 #opening a image file and saving it as a pixel array
 #im = Image.open("Drive:/imagefile.png") #windows format
-im = Image.open("/home/eric/imagefile.jpg") #linux format
+im = Image.open("/home/user/imagefile.jpg") #linux format
 
 #getting source width, height and aspect
 w, h = im.size
@@ -33,7 +33,7 @@ im = im.resize((width,height), resample =0)
 
 #reducing image colors
 im = ImageOps.posterize(im, posterize) 
-im.save("/home/eric/imagefileresized.jpg")
+im.save("/home/user/imagefileresized.jpg")
 
 #readim the image into a list
 imVals=list(im.getdata())
@@ -49,7 +49,6 @@ for i in range(0,height):
 #-----------------------------------------------------------#
 def bitmask(x,y,val):
         #current bitmask
-        print(val)
         bitmask = 0 
 
         for bitH in range(0,4):
@@ -80,7 +79,9 @@ def bitmask(x,y,val):
                                 if i == bit and c == 1:
                                         visited[y+bitH][x+bitW] = 1
                 i+=1   
-                
+        val = str(val)
+        val = val.replace('(', "") 
+        val = val.replace(')', "") 
         return str(int(lastvalidBin,2)) + str(',') + str(val)
 #-----------------------------------------------------------#        
 #end of function
@@ -122,9 +123,9 @@ for i in image:
 
 #output file as csv
 #only saves coordinates with a valid bitmask value
-with open('/home/eric/imagefile.csv', mode='w') as image_file: #linux
+with open('/home/user/imagefile.csv', mode='w') as image_file: #linux
 #with open('Drive:/imagefile.csv', mode='wb') as image_file: #windows
-        image_writer = csv.writer(image_file, delimiter=';', quotechar='"', quoting=csv.QUOTE_MINIMAL)
+        image_writer = csv.writer(image_file, delimiter=',', quotechar ='',escapechar=' ', quoting=csv.QUOTE_NONE)
         y = 0 
         for row in placedblocks:
                 x = 0
