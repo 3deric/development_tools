@@ -3,12 +3,16 @@
 #Data is stored in a csv file.
 #The blocks are defined as bitmask values in a 4 by 4 raster.
 
-from PIL import Image, ImageOps, ImageFilter, ImageEnhance
+#usage
+#
+#python3 legoBricks.py file resolution colorpalette (greyscale, simple, full)
+#python3 legoBricks.py image.jpg 64 simple
+
+from PIL import Image, ImageOps, ImageEnhance
 import csv
 import math
 import random
 import sys
-
 
 im = Image.open(sys.argv[1])
 width = int(sys.argv[2])
@@ -145,16 +149,19 @@ palette_special = [
 
     
 if colours == "full":
+	palette = palette_full
 	p_img = Image.new('P', (16,16))
 	p_img.putpalette(palette_full * 4)
 	print("using full palette")
 
 if colours == "greyscale":
+	palette = palette_greyscale
 	p_img = Image.new('P', (16, 16))
 	p_img.putpalette(palette_greyscale * 64)
 	print("using greyscale palette")
 
 if colours == "simple":
+	palette = palette_simple
 	p_img = Image.new('P', (16, 16))
 	p_img.putpalette(palette_simple * 16)
 	print("using simple palette")
@@ -184,6 +191,8 @@ preview.show()
 
 #Flipping the image horizontal
 im = ImageOps.mirror(im)
+
+im = im.convert('RGB')
 
 #readim the image into a list
 imVals=list(im.getdata())
@@ -228,10 +237,8 @@ def bitmask(x,y,val):
                                 bit = bitW + 4 * bitH
                                 if i == bit and c == 1:
                                         visited[y+bitH][x+bitW] = 1
-                i+=1   
-        val = str(val)
-        val = val.replace('(', "") 
-        val = val.replace(')', "") 
+                i+=1  
+        val = str(val).replace('(', "").replace(')', "") 
         return str(int(lastvalidBin,2)) + str(',') + str(val)
 #-----------------------------------------------------------#        
 #end of function
@@ -281,6 +288,6 @@ with open(name+".csv", mode='w') as image_file: #linux
                 x = 0
                 for val in row:
                         if val != 0:
-                                image_writer.writerow([x,y,val])
+                        	image_writer.writerow([x,y,val])
                         x+=1
                 y+=1
