@@ -1,9 +1,9 @@
 # LegoBricks
 A script to generate csv files in python. The csv files contain information about the type, position and color of different lego bricks. Those values can be used in blender or any other application to create 3d images out of legobrick objects.
 
-![Preview_01](/Preview_01.png)
-![Preview_02](/Preview_02.png)
-![Preview_03](/Preview_03.png)
+![Preview_01](/preview_01.PNG)
+![Preview_02](/preview_02.PNG)
+![Preview_03](/preview_03.PNG)
 
 ## Usage
 python3 legoBricks.py imagefile resolution colourpalette
