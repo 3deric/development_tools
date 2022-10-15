@@ -41,7 +41,7 @@ palette_simple = [
 	252,195,158, #light nougat
 	221,196,142, #brick yellow
 	221,26,33, #bright red
-	232,80,156 #medium reddish violet
+	229,30,38 #red
 	]
 	
 palette_greyscale = [
