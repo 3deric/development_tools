@@ -1,6 +1,6 @@
 import bpy, csv, numpy
 
-fp = "/home/eric/IMG_4193.csv"
+fp = "/home/user/image.csv"
 
 vertices = []
 edges = []
@@ -8,6 +8,11 @@ faces = []
 
 blocks = []
 colours = []
+
+filename = fp.split("/")
+filenameLength = len(filename)-1
+filename = filename[filenameLength].split(".")
+filename = filename[0]
 
 with open( fp ) as csvfile:
     rdr = csv.reader( csvfile )
@@ -29,9 +34,7 @@ new_mesh.attributes.new(name='colours', type='FLOAT_VECTOR', domain='POINT')
 #colours = numpy.zeros(len(new_mesh.vertices) * 3, dtype=numpy.float32)
 new_mesh.attributes['colours'].data.foreach_set('vector', colours)
 
-new_object = bpy.data.objects.new('new_object', new_mesh)
+new_object = bpy.data.objects.new(filename, new_mesh)
 
-new_collection = bpy.data.collections.new('new_collection')
-bpy.context.scene.collection.children.link(new_collection)
-
-new_collection.objects.link(new_object)
+scene = bpy.context.scene
+scene.collection.objects.link(new_object)
