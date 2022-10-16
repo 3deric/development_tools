@@ -190,7 +190,7 @@ preview = im.resize((w,h), resample = 0)
 preview.show()
 
 #Flipping the image horizontal
-im = ImageOps.mirror(im)
+im = ImageOps.flip(im)
 
 im = im.convert('RGB')
 
