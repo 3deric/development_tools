@@ -7,7 +7,7 @@ A script to generate csv files in python. The csv files contain information abou
 
 ## Usage
 python3 legoBricks.py imagefile resolution colourpalette contrast (optional) saturation (optional)
-
+python3 IMG.4193.jpg 64 full 1.5 2.0
 ### resolution
 Resolution defines the width of the image, height gets calculated in the script.
 Needs to be integer. Optimal values are 32 or 64.
