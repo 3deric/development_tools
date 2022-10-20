@@ -6,11 +6,17 @@ A script to generate csv files in python. The csv files contain information abou
 ![Preview_03](Previews/preview_03.PNG)
 
 ## Usage
-python3 legoBricks.py imagefile resolution colourpalette
+python3 legoBricks.py imagefile resolution colourpalette contrast (optional) saturation (optional)
 
 ### resolution
-resolution defines the width of the image, height gets calculated in the script
+Resolution defines the width of the image, height gets calculated in the script.
+Needs to be integer. Optimal values are 32 or 64.
 ### colourpalette
-1. Greyscale - greyscale lego colour palette
-2. Simple - simplyfied lego colour palette
-3. Full - full lego colour palette
+1. greyscale - greyscale lego colour palette
+2. simple - simplyfied lego colour palette
+3. full - full lego colour palette
+### contrast
+Changes contrast of the input image.
+### saturation
+Changes saturation of the input image.
+
