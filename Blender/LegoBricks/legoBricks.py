@@ -22,10 +22,14 @@ colours = str(sys.argv[3])
 
 if len(sys.argv) >4:
 	contrast = float(sys.argv[4])
-	saturation = float(sys.argv[5])
 else:
 	contrast = 1.0
+if len(sys.argv) >5:
+	saturation = float(sys.argv[5])
+else:
 	saturation = 1.0
+
+
 
 #Predefined blocks
 blocks = [1,3,7,15,17,51,255,273,4369,13107,65535]
