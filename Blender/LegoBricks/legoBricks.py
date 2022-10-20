@@ -8,7 +8,7 @@
 #python3 legoBricks.py file resolution colorpalette (greyscale, simple, full)
 #python3 legoBricks.py image.jpg 64 simple
 
-from PIL import Image, ImageOps, ImageEnhance
+from PIL import Image, ImageOps, ImageEnhance, ImageDraw, ImageChops
 import csv
 import math
 import random
@@ -41,7 +41,7 @@ palette_simple = [
 	252,195,158, #light nougat
 	221,196,142, #brick yellow
 	221,26,33, #bright red
-	229,30,38 #red
+	229,30,38, #red
 	]
 	
 palette_greyscale = [
@@ -186,7 +186,19 @@ im = ImageEnhance.Color(im).enhance(saturation)
 im = im.quantize(palette=p_img, dither=0)
 preview = im
 
-preview = im.resize((w,h), resample = 0)
+preview = im.resize((width * 16,height * 16), resample = 0)
+dot = Image.new('RGBA', (16,16))
+draw = ImageDraw.Draw(dot)
+draw.rectangle((0,0,16,16), fill = (255,255,255) )
+draw.ellipse((2,2,12,12), fill = (220,220,220))
+dots = Image.new('RGBA', (width * 16, height*16))
+
+for i in range(0, width *16, 16):
+	for j in range(0,height*16, 16):
+		dots.paste(dot,(i,j))
+		
+preview = ImageChops.multiply(preview.convert('RGB'), dots.convert('RGB'))
+
 preview.show()
 
 #Flipping the image horizontal
