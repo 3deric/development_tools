@@ -19,8 +19,13 @@ width = int(sys.argv[2])
 name = str(sys.argv[1]).split(".")[0]
 colours = str(sys.argv[3])
 
-contrast = 1.5
-saturation = 2.0
+
+if len(sys.argv) >4:
+	contrast = float(sys.argv[4])
+	saturation = float(sys.argv[5])
+else:
+	contrast = 1.0
+	saturation = 1.0
 
 #Predefined blocks
 blocks = [1,3,7,15,17,51,255,273,4369,13107,65535]
