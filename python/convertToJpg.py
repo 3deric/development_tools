@@ -5,9 +5,11 @@ import os
 #loops through all png images in a folder
 #resizes images based on a multiplier
 #outputs images as jpg 
+#does not change any decal texture since these require alpha channels
 
 #Resolution multiplier
 out_res = 0.5
+
 
 def resizeAndConvert(file):
     print(file)
@@ -17,9 +19,10 @@ def resizeAndConvert(file):
     outImg.save(os.path.splitext(file)[0] + '.jpg')
   
 
-#get all images of type jpg and apply filters
+#get all images of type jpg and resize if not a decal texture
 image_list = []
 for filename in glob.glob('*.png'):
     im=Image.open(filename)
-    resizeAndConvert(filename)
-    os.remove(filename)
+    if "decal" not in filename:
+        resizeAndConvert(filename)
+        os.remove(filename)
