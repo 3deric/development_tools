@@ -20,7 +20,6 @@ def resizeAndConvert(file):
   
 
 #get all images of type jpg and resize if not a decal texture
-image_list = []
 for filename in glob.glob('*.png'):
     im=Image.open(filename)
     if "decal" not in filename:
